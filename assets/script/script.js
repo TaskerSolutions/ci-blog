@@ -4,3 +4,6 @@ $('textarea').each(function () {
   this.style.height = 'auto';
   this.style.height = (this.scrollHeight) + 'px';
 });
+
+
+CKEDITOR.replace( 'editor' );

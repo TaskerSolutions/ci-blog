@@ -19,14 +19,14 @@ form method will = post
 
   <div class="mb-3">
     <label class="form-label">Title</label>
-    <input type="text" class="form-control" name="title" placeholder="Add Title" value="<?php echo $post['title']; ?>">
+    <input type="text" class="form-control" name="title" placeholder="Add Title" value="<?php echo $post['title']; ?>" required>
   </div>
 
   <div class="mb-3">
     <label class="form-label">Body</label>
-    <textarea class="form-control" name="body" placeholder="Add Body"
+    <textarea id="editor" class="form-control" name="body" placeholder="Add Body"
     oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"'
-    ><?php echo $post['body']; ?></textarea>
+    required><?php echo $post['body']; ?></textarea>
   </div>
 
   <button type="submit" class="btn btn-success">Submit</button>
@@ -34,12 +34,3 @@ form method will = post
     Cancel edit
    </a>
 </form>
-
-<br>
-
-<p>
-  
-  <a class="btn btn-primary" href="<?php echo site_url('/posts'); ?>">
-    Back to all posts
-  </a>
-</p>

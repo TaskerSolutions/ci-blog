@@ -1,2 +1,3 @@
 <h2><?= $title ?></h2>
-<p>Code Igniter 3 test website V 1.0</p>
+<p>This is my first project using Code Igniter 3, the MVC framework and CRUD functionality.<br>
+Visit the blog to try it out for yourself!</p>
