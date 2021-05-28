@@ -1,7 +1,7 @@
 <html>
 <head>
 
-  <title>Code Igniter Test</title>
+  <title>Code Igniter Blog</title>
 
   <link rel="stylesheet" href="https://bootswatch.com/4/flatly/bootstrap.min.css">
   <link rel="stylesheet" href="<?php echo base_url(); ?>assets/css/style.css">
