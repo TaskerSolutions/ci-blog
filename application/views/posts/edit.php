@@ -23,13 +23,6 @@ form method will = post
   </div>
 
   <div class="mb-3">
-    <label class="form-label">Body</label>
-    <textarea id="editor" class="form-control" name="body" placeholder="Add Body"
-    oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"'
-    required><?php echo $post['body']; ?></textarea>
-  </div>
-
-  <div class="mb-3">
     <label class="form-label">Category</label>
     <select class="form-control" name="category_id">
       <?php foreach($categories as $category): ?>
@@ -38,6 +31,13 @@ form method will = post
         </option>
       <?php endforeach ; ?>
     </select>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Body</label>
+    <textarea id="editor" class="form-control" name="body" placeholder="Add Body"
+    oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"'
+    required><?php echo $post['body']; ?></textarea>
   </div>
 
   <button type="submit" class="btn btn-success">Submit</button>

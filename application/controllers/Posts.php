@@ -122,6 +122,7 @@ Class Posts extends CI_Controller{
   }
 
   public function update() {
+  
     $this->post_model->update_post();
     // redirect to posts page once update has occurred
     redirect('posts');

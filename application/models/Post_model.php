@@ -42,15 +42,7 @@
       return $this->db->insert('posts', $data);
     }
 
-    public function delete_post($id) {
-      // where() function is comparing 'id' to $id to make sure they are the same
-      $this->db->where('id', $id);
-      // delete from table name 'posts'
-      $this->db->delete('posts');
-      return true;
-    }
-
-    public function update_post($post_image) {
+    public function update_post() {
       // url_title() function turns it into a slug
       // $this->input->post() is how to get the form values
       $slug = url_title($this->input->post('title'));
@@ -60,13 +52,20 @@
         'slug' => $slug,
         'body' => $this->input->post('body'),
         'category_id' => $this->input->post('category_id'),
-        'post_image' => $post_image
       );
 
       // where() function is comparing 'id' to $this->input->post('id') to make sure they are the same
       $this->db->where('id', $this->input->post('id'));
       // table name is 'posts', passing in the $data array
       return $this->db->update('posts', $data);
+    }
+
+    public function delete_post($id) {
+      // where() function is comparing 'id' to $id to make sure they are the same
+      $this->db->where('id', $id);
+      // delete from table name 'posts'
+      $this->db->delete('posts');
+      return true;
     }
 
     public function get_categories() {
