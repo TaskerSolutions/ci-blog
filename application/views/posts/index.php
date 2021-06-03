@@ -1,4 +1,4 @@
-<h2><?= $title ?></h2>
+<h1><?= $title ?></h1>
 
 <br>
 <br>
@@ -14,29 +14,39 @@
 
 <?php foreach($posts as $post) : ?>
 
-  <h3>
+  <h2>
     <?php echo $post['title']; ?>
-  </h3>
+  </h2>
 
-  <small class="post-date">
-    Posted on: <?php echo $post['created_at']; ?>
-  </small>
+  <div class="row">
+    <div class="col-md-2">
+      <img class="img-fluid" style="width: 100%;" src="<?php echo site_url(); ?>assets/images/posts/<?php echo $post['post_image']; ?>">
+    </div>
+    <div class="col-md-10">
+      <small class="post-date">
+        Posted on: <strong><?php echo $post['created_at']; ?></strong>
+        <br>
+        Category: <strong><?php echo $post['name']; ?></strong>
+      </small>
 
-  <br>
+      <br>
 
-  <!--
-  .post-body class has a style of white-space: pre-wrap;
-  this means that I can't use any white space in the div for clean code
-  -->
-  <div class="post-body"><?php 
-    $str = $post['body'];
-    if (strlen($str) > 320) {
-      $str = substr($str, 0, 347) . '...';
-    }
-    echo $str;
-  ?></div>
-  
+      <div>
+        <?php 
+        // this is a method to limit to a particular # of characters
+        $str = $post['body'];
+        if (strlen($str) > 320) {
+          $str = substr($str, 0, 347) . '...';
+        }
+        echo $str;
 
+        // could also use word_limiter(<string>, <# of words>)
+        // requires $autoload['helper'] = array('text');
+        // echo word_limiter($post['body'], 100);
+        ?>
+      </div>
+    </div>
+  </div>
 
   <br>
   <br>

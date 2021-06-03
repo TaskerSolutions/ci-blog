@@ -1,4 +1,4 @@
-<h2><?= $title; ?></h2>
+<h1><?= $title; ?></h1>
 
 <!--
 validation_errors() could be loaded in Posts.php (controler)
@@ -27,6 +27,17 @@ form method will = post
     <textarea id="editor" class="form-control" name="body" placeholder="Add Body"
     oninput='this.style.height = "";this.style.height = this.scrollHeight + "px"'
     required><?php echo $post['body']; ?></textarea>
+  </div>
+
+  <div class="mb-3">
+    <label class="form-label">Category</label>
+    <select class="form-control" name="category_id">
+      <?php foreach($categories as $category): ?>
+        <option value="<?php echo $category['id'] ; ?>">
+          <?php echo $category['name'] ; ?>
+        </option>
+      <?php endforeach ; ?>
+    </select>
   </div>
 
   <button type="submit" class="btn btn-success">Submit</button>
