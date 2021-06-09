@@ -33,23 +33,125 @@
     <!-- Brand -->
     <a class="navbar-brand" href="<?php echo base_url(); ?>">CI Blog</a>
 
-    <!-- Link -->
+    <!-- Left links -->
+    <ul class="navbar-nav">
+
+      <li><a class="nav-link" href="<?php echo base_url(); ?>">
+        Home
+      </a></li>
+
+      <li><a class="nav-link" href="<?php echo base_url(); ?>posts">
+        Posts
+      </a></li>
+
+      <li><a class="nav-link" href="<?php echo base_url(); ?>categories">
+        Categories
+      </a></li>
+
+    </ul>
+
+    <!-- Right links -->
     <ul class="navbar-nav ml-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="<?php echo base_url(); ?>posts">
-          Latest posts
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="<?php echo base_url(); ?>categories">
-          Categories
-        </a>
-      </li>
+
+      <!-- if user is not logged in, then show these links -->
+      <?php if (!$this->session->userdata('logged_in')) : ?>
+
+        <li><a class="nav-link" href="<?php echo site_url('users/register'); ?>">
+          Register
+        </a></li>
+
+        <li><a class="nav-link" href="<?php echo site_url('users/login'); ?>">
+          Log in
+        </a></li>
+
+      <?php endif; ?>
+
+      <!-- if user is logged in, then show these links -->
+      <?php if ($this->session->userdata('logged_in')) : ?>
+
+        <li><a class="nav-link" href="<?php echo site_url('posts/create'); ?>">
+          Create post
+        </a></li>
+
+        <li><a class="nav-link" href="<?php echo site_url('categories/create'); ?>">
+          Create category
+        </a></li>
+
+        <li><a class="nav-link" href="<?php echo site_url('users/logout'); ?>">
+          Log out
+        </a></li>
+
+      <?php endif; ?>
+
     </ul>
   </div>
 </nav>
 
 <div class="container">
+
+  <br>
+
+  <!-- Flash messages -->
+
+  <?php if($this->session->flashdata('user_registered')) : ?>
+     <?php echo '<p class="alert alert-success">'.
+     $this->session->flashdata('user_registered').
+     '</p>'; ?>
+  <?php endif; ?>
+
+  <?php if($this->session->flashdata('post_created')) : ?>
+     <?php echo '<p class="alert alert-success">'.
+     $this->session->flashdata('post_created').
+     '</p>'; ?>
+  <?php endif; ?>
+
+  <?php if($this->session->flashdata('post_updated')) : ?>
+     <?php echo '<p class="alert alert-success">'.
+     $this->session->flashdata('post_updated').
+     '</p>'; ?>
+  <?php endif; ?>
+
+  <?php if($this->session->flashdata('post_deleted')) : ?>
+     <?php echo '<p class="alert alert-success">'.
+     $this->session->flashdata('post_deleted').
+     '</p>'; ?>
+  <?php endif; ?>
+
+  <?php if($this->session->flashdata('category_created')) : ?>
+     <?php echo '<p class="alert alert-success">'.
+     $this->session->flashdata('category_created').
+     '</p>'; ?>
+  <?php endif; ?>
+
+  <?php if($this->session->flashdata('login_failed')) : ?>
+     <?php echo '<p class="alert alert-danger">'.
+     $this->session->flashdata('login_failed').
+     '</p>'; ?>
+  <?php endif; ?>
+
+  <?php if($this->session->flashdata('user_logged_in')) : ?>
+     <?php echo '<p class="alert alert-success">'.
+     $this->session->flashdata('user_logged_in').
+     '</p>'; ?>
+  <?php endif; ?>
+
+  <?php if($this->session->flashdata('user_logged_out')) : ?>
+     <?php echo '<p class="alert alert-success">'.
+     $this->session->flashdata('user_logged_out').
+     '</p>'; ?>
+  <?php endif; ?>
+
+  <?php if($this->session->flashdata('not_logged_in')) : ?>
+     <?php echo '<p class="alert alert-danger">'.
+     $this->session->flashdata('not_logged_in').
+     '</p>'; ?>
+  <?php endif; ?>
+
+  <?php if($this->session->flashdata('category_deleted')) : ?>
+     <?php echo '<p class="alert alert-danger">'.
+     $this->session->flashdata('category_deleted').
+     '</p>'; ?>
+  <?php endif; ?>
 
 <br>
 <br>

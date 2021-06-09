@@ -4,7 +4,7 @@
 <br>
 
 <p>
-  <a class="btn btn-success" href="<?php echo site_url('/posts/create'); ?>">
+  <a class="btn btn-primary" href="<?php echo site_url('/posts/create'); ?>">
     New post
   </a>
 </p>
@@ -61,3 +61,11 @@
   <br>
 
 <?php endforeach; ?>
+
+<div class="pagination">
+  <!-- create the links for pagination -->
+  <?php echo $this->pagination->create_links(); ?>
+</div>
+
+<br>
+<br>

@@ -4,7 +4,14 @@
       $this->load->database();
     }
 
-    public function get_posts($slug = FALSE){
+    // set the parameters to be false by default
+    public function get_posts($slug = FALSE, $limit = FALSE, $offset = FALSE) {
+
+      // if limit was passed in...
+      if ($limit) {
+        $this->db->limit($limit, $offset);
+      }
+
       if($slug === FALSE) {
         // order posts by latest first. sort by ID in descending order.
         // 'DESC' = descending. 'ASC' = ascending.
@@ -35,6 +42,7 @@
         'slug' => $slug,
         'body' => $this->input->post('body'),
         'category_id' => $this->input->post('category_id'),
+        'user_id' => $this->session->userdata('user_id'),
         'post_image' => $post_image
       );
 
@@ -51,7 +59,7 @@
         'title' => $this->input->post('title'),
         'slug' => $slug,
         'body' => $this->input->post('body'),
-        'category_id' => $this->input->post('category_id'),
+        'category_id' => $this->input->post('category_id')
       );
 
       // where() function is comparing 'id' to $this->input->post('id') to make sure they are the same
@@ -61,17 +69,33 @@
     }
 
     public function delete_post($id) {
+
+      // find image to delete too
+      $image_file_name = $this->db->select('post_image')->get_where('posts', array('id' => $id))->row()->post_image;
+      // save the current working directory
+      $cwd = getcwd();
+      $image_file_path = $cwd."\\assets\\images\\posts\\";
+      chdir($image_file_path);
+      unlink($image_file_name);
+      // restore previous working directory
+      chdir($cwd);
+
       // where() function is comparing 'id' to $id to make sure they are the same
       $this->db->where('id', $id);
+
       // delete from table name 'posts'
       $this->db->delete('posts');
+
       return true;
     }
 
     public function get_categories() {
+
       $this->db->order_by('id');
+
       // get db table with name 'categories' and store it in $query
       $query = $this->db->get('categories');
+
       // return the result as an array
       return $query->result_array();
     }
@@ -89,6 +113,21 @@
       // checking if category_id is == the id that is being passed in
       $query = $this->db->get_where('posts', array('category_id' => $category_id));
       return $query->result_array();
+    }
+
+    // Check post title exists in database
+    // pass in $title (what the user has tried to register with)
+    public function check_post_title_exists($title) {
+      
+      // check table 'posts' for collumn 'email' to see if it matches $email
+      $query = $this->db->get_where('posts', array('title' => $title));
+
+      // if 'title' collumn has no entries with $email, return true.
+      if (empty($query->row_array())) {
+        return true;
+      } else {
+        return false;
+      }
     }
 
   }

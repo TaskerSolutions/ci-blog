@@ -19,15 +19,18 @@
 
 <div><?php echo $post['body']; ?></div>
 
-<hr>
+<!-- only show edit & delete buttons if session user_id is == user id of the post -->
+<?php if ($this->session->userdata('user_id') == $post['user_id']) : ?>
+  <hr>
 
-<a class="btn btn-outline-success float-left" style="margin-right: 10px;" href="<?php echo base_url(); ?>posts/edit/<?php echo $post['slug']; ?>">Edit post</a>
+  <a class="btn btn-outline-success float-left" style="margin-right: 10px;" href="<?php echo base_url(); ?>posts/edit/<?php echo $post['slug']; ?>">Edit post</a>
 
-<!-- not using a get request, as it is extremely unsafe -->
-<?php echo form_open('/posts/delete/'.$post['id']); ?>
-  <input type="submit" value="Delete post" class="btn btn-outline-danger"
-  onClick="if(!confirm('Are you sure you want to delete this post?')){return false;}">
-</form>
+  <!-- not using a get request, as it is extremely unsafe -->
+  <?php echo form_open('/posts/delete/'.$post['id']); ?>
+    <input type="submit" value="Delete post" class="btn btn-outline-danger"
+    onClick="if(!confirm('Are you sure you want to delete this post?')){return false;}">
+  </form>
+<?php endif; ?>
 
 <hr>
 

@@ -9,6 +9,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 // must be before '$route['posts/(:any)'] = 'posts/view/$1';'
 $route['posts/create'] = 'posts/create';
 
+// must be before $route['posts/(:any)']; for pagination to work
+$route['posts/index'] = 'posts/index';
+
 $route['posts/update'] = 'posts/update';
 
 // (:any) selects 'anything' from CI Blog/...

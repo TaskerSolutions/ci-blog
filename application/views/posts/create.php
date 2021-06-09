@@ -33,7 +33,9 @@ _multipart is so that form can handle file uploads aswell
   </div>
 
   <div class="mb-3">
-    <label class="form-label">Upload Image</label>
+    <label class="form-label">
+      Upload Image - <small>Max size: 4mb</small>
+    </label>
     <br>
     <!-- must be named 'userfile' -->
     <input type="file" name="userfile" size="20">

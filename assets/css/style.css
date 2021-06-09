@@ -4,3 +4,22 @@
   margin-top: 4px;
   display: block;
 }
+
+.pagination strong {
+    position: relative;
+    display: block;
+    padding: .5rem .75rem;
+    margin-left: 0;
+    line-height: 1.25;
+    color: #000000;
+    background-color: #b2ccc9;
+    border: 1px solid #04423b54;
+    margin: 2px;
+}
+
+.pagination a {
+  color: #000000;
+  background-color: #36b1a2;
+  border: 1px solid #04423b54;
+  margin: 2px;
+}
