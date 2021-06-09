@@ -18,6 +18,10 @@
 
       <button type="submit" class="btn btn-primary btn-block">Login</button>
 
+      <br>
+      
+      <a class="btn btn-warning btn-block" href="<?php echo site_url('users/register'); ?>">Register a new account</a>
+
     </div>  
   </div>
 

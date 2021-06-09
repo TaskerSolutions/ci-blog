@@ -47,6 +47,11 @@ submit the form to Users controller, and register() function
 
       <button type="submit" class="btn btn-success btn-block">Submit</button>
 
+      <br>
+
+      <label>Already have an account?</label>
+      <a class="btn btn-warning btn-block" href="<?php echo site_url('users/login'); ?>">Log in</a>
+
     </div>
   </div>
 
